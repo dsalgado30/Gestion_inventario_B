@@ -5,27 +5,34 @@ import AuthLayout from "../layouts/AuthLayout";
 import ProtectedRoute from "./ProtectedRoute";
 import AdminLayout from "../layouts/AdminLayout";
 import AdminPage from "../pages/admin/AdminPage";
+import AdminStatsPage from "../pages/admin/AdminStatsPage"; 
+import AdminReportsPage from "../pages/admin/AdminReportsPage"; 
 import RedirectIfAuthenticated from "./RedirectIfAuthenticated";
 import { useAuth } from "../hooks/use-auth";
 import { routes } from "./Routes";
 
 const AppRoutes = () => {
-
-  const {isAuthenticated, user} = useAuth()
+  const { isAuthenticated, user } = useAuth();
 
   return (
     <Routes>
-      <Route path={routes.home} element={
-        <RedirectIfAuthenticated isAuthenticated={isAuthenticated}>
-          <Navigate to={routes.login} />
-        </RedirectIfAuthenticated>
-      } />
-      <Route element={<AuthLayout />}>
-        <Route path={routes.login} element={
+      <Route
+        path={routes.home}
+        element={
           <RedirectIfAuthenticated isAuthenticated={isAuthenticated}>
-            <LoginPage />
+            <Navigate to={routes.login} />
           </RedirectIfAuthenticated>
-        } />
+        }
+      />
+      <Route element={<AuthLayout />}>
+        <Route
+          path={routes.login}
+          element={
+            <RedirectIfAuthenticated isAuthenticated={isAuthenticated}>
+              <LoginPage />
+            </RedirectIfAuthenticated>
+          }
+        />
       </Route>
       <Route element={<AdminLayout />}>
         <Route
@@ -33,6 +40,24 @@ const AppRoutes = () => {
           element={
             <ProtectedRoute
               component={AdminPage}
+              isAuthenticated={isAuthenticated}
+            />
+          }
+        />
+        <Route
+          path={routes.stats}
+          element={
+            <ProtectedRoute
+              component={AdminStatsPage}
+              isAuthenticated={isAuthenticated}
+            />
+          }
+        />
+        <Route
+          path={routes.reports} 
+          element={
+            <ProtectedRoute
+              component={AdminReportsPage}
               isAuthenticated={isAuthenticated}
             />
           }

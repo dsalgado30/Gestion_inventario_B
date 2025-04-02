@@ -181,3 +181,6 @@ npm install @heroicons/react
 npm install
 npm run dev
 ```
+
+12. Icons
+https://heroicons.com/

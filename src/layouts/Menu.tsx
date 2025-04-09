@@ -7,24 +7,24 @@ import {
   ClipboardDocumentIcon,
   Cog6ToothIcon,
   QuestionMarkCircleIcon,
-  UserCircleIcon
-  
+  UserCircleIcon,
+  HomeIcon
 } from "@heroicons/react/16/solid";
 import { MenuItem } from "../components/atomic/atoms/MenuItem";
 import { routes } from "../routes/Routes";
 
 export const adminMenu: MenuItem[] = [
   {
-    code: "NOTIFICATION",
-    title: "Notificaciones",
-    path: routes.notifications,
-    icon: <BellIcon className="h-6 w-6 text-blue-500" />,
+    code: "HOME",
+    title: "Inicio",
+    path: routes.home,
+    icon: <HomeIcon className="h-5 w-5 text-black-500" />,
   },
   {
     code: "STATS",
     title: "Estadísticas",
     path: routes.stats,
-    icon: <ChartBarIcon className="h-6 w-6 text-blue-500" />,
+    icon: <ChartBarIcon className="h-6 w-6 text-blue-500" />
   },
   {
     code: "PRODUCTS",
@@ -57,21 +57,27 @@ export const adminMenu: MenuItem[] = [
     icon: <Cog6ToothIcon className="h-6 w-6 text-blue-500" />,
   },
   {
-    code: "HELP",
-    title: "Ayuda",
-    path: routes.help,
-    icon: <QuestionMarkCircleIcon className="h-6 w-6 text-blue-500" />,
-  },
-  {
     code: "PROFILE",
     title: "Perfil",
     path: routes.profile,
     icon: <UserCircleIcon className="h-6 w-6 text-blue-500" />,
   },
   {
+    code: "Notificaciones",
+    title: "Notificaciones",
+    path: routes.notifications, 
+    icon: <BellIcon className="h-6 w-6 text-blue-500" />,
+  },
+  {
+    code: "Ayuda",
+    title: "Ayuda",
+    path: routes.help, 
+    icon: <QuestionMarkCircleIcon className="h-6 w-6 text-blue-500" />,
+  },
+  {
     code: "CLOSE",
     title: "Cerrar sesión",
     path: routes.logout,
-    icon: <UserCircleIcon className="h-6 w-6 text-blue-500" />,
+    icon: <UserCircleIcon className="h-6 w-6 text-blue-500" />
   },
 ];

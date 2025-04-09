@@ -49,14 +49,13 @@ const NavbarApp = ({
 
 
   return (
-    <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
+    <Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen} className="bg-black text-white">
       <NavbarContent className="sm:hidden" justify="start">
         <NavbarMenuToggle
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         />
       </NavbarContent>
       <NavbarBrand>
-        <img src={logo} onClick={()=> navigate(routes.home)} alt={`Logo`} className="cursor-pointer w-20 object-cover" />
         <p className="font-bold text-inherit">{NAME_APP}</p>
       </NavbarBrand>
       {leftContent && (

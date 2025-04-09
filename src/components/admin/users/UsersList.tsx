@@ -40,6 +40,12 @@ export const products: Product[] = [
     email: "daniela@example.com",
     role: "Aprendiz",
   },
+  {
+    code: 3,
+    name: "Andres",
+    email: "andres@example.com",
+    role: "Aprendiz",
+  },
 ];
 
 interface UsersListProps {

@@ -1,46 +1,46 @@
-import { useState } from 'react';
+import { useState, useEffect } from "react";
 
 interface CarouselProps {
   images: string[];
+  height?: string;
+  className?: string;
+  interval?: number; // Tiempo en milisegundos entre cada cambio de imagen
 }
 
-const Carousel = ({ images }: Readonly<CarouselProps>) => {
+const Carousel = ({
+  images,
+  height = "h-100",
+  className = "",
+  interval = 3000, // 3 segundos por defecto
+}: Readonly<CarouselProps>) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
+  // UseEffect para hacer que las imágenes cambien automáticamente
+  useEffect(() => {
+    const slideInterval = setInterval(() => {
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, interval);
 
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-  };
+    return () => clearInterval(slideInterval); //  Limpia el intervalo al desmontar
+  }, [images.length, interval]);
 
   return (
-    <div className="relative w-full max-w-3xl mx-auto flex items-center justify-center">
-      <div className="overflow-hidden relative h-96 w-full">
+    <div className={`relative w-full mx-auto flex items-center justify-center ${className}`}>
+      {/* 🔹 Contenedor de la imagen */}
+      <div className={`overflow-hidden relative ${height} w-full`}>
         {images.map((image, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-transform transform ${
-              index === currentIndex ? 'translate-x-0' : 'translate-x-full'
+            className={`absolute inset-0 transition-opacity duration-1000 ${
+              index === currentIndex ? "opacity-100" : "opacity-0"
             }`}
           >
-            <img src={image} alt={`Slide ${index}`} className="w-full h-full object-cover" />
+            {/* 🔹 Asegura que la imagen se ajusta correctamente */}
+            <img src={image} alt={`Slide ${index}`} className="w-full h-full object-contain" />
           </div>
         ))}
       </div>
-      <button
-        className="absolute top-1/2 left-0 transform -translate-y-1/2 bg-gray-800 text-white p-2"
-        onClick={prevSlide}
-      >
-        Anterior
-      </button>
-      <button
-        className="absolute top-1/2 right-0 transform -translate-y-1/2 bg-gray-800 text-white p-2"
-        onClick={nextSlide}
-      >
-        Siguiente
-      </button>
+   
     </div>
   );
 };

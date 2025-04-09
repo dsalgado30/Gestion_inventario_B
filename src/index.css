@@ -2,4 +2,6 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-
+html, body, #root {
+    @apply w-full h-full  m-0 p-0; 
+  }

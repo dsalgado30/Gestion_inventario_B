@@ -13,5 +13,4 @@ export const routes = {
   login: "/login",
   admin: "/admin",
   root: "..",
- 
 };

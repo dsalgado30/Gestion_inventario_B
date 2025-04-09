@@ -17,25 +17,23 @@ const Sidebar = ({ menuItems }: SidebarProps) => {
   }, [location.pathname]);
 
   return (
-    <div className="h-screen w-64 border-2 border-blue-500 text-black rounded-lg hidden sm:block">
+    <div className=" w-64 bg-black text-white border-2 border-black hidden sm:block">
       <div className="p-4">
-        <h1 className="text-2xl font-bold text-center">{ NAME_APP }</h1>
+        <h1 className="text-2xl font-bold text-center">Menu</h1>
       </div>
-      <nav className="mt-10 flex flex-col items-center gap-4">
-        {menuItems.map((item, index) => {
-          return (
-            <Link key={index.toString()} to={item.path} onClick={() => setActivePath(item.path)}>
-              <Button
-                color="primary"
-                variant={activePath === item.path ? "solid" : "bordered"}
-                className="w-48"
-              >
-                {item.icon}
-                {item.title}
-              </Button>
-            </Link>
-          );
-        })}
+      <nav className=" flex flex-col items-center">
+        {menuItems.map((item, index) => (
+          <Link key={index.toString()} to={item.path} onClick={() => setActivePath(item.path)}>
+            <Button
+              className={`w-48 bg-black text-white border border-black hover:bg-white hover:text-black transition flex items-center justify-start gap-2 px-4 ${
+                activePath === item.path ? "border-2 border-white" : ""
+              }`}
+            >
+              <span>{item.icon}</span>
+              <span>{item.title}</span>
+            </Button>
+          </Link>
+        ))}
       </nav>
     </div>
   );
